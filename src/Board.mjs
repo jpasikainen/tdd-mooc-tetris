@@ -6,16 +6,18 @@ export class Board {
   constructor(width, height) {
     this.width = width;
     this.height = height;
-    this.board = Array.from(Array(width), () => Array(height));
-    for (let i = 0; i < height; i++) {
-      for (let j = 0; j < width; j++) {
-        this.board[i][j] = ".";
-      }
-    }
+    this.board = Array.from(Array(this.height), () => new Array(this.width).fill("."));
   }
 
   drop(block) {
     this.board[0][Math.floor(this.width / 2)] = "X";
+  }
+
+  tick() {
+    this.board = this.board.reverse();
+    this.board.push(new Array(this.width).fill("."));
+    this.board = this.board.reverse();
+    this.board.pop();
   }
 
   toString() {
