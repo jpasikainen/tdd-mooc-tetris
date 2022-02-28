@@ -21,10 +21,22 @@ export class Board {
   }
 
   tick() {
-    this.board = this.board.reverse();
-    this.board.push(new Array(this.width).fill("."));
-    this.board = this.board.reverse();
-    this.board.pop();
+    const prevBoard = this.board;
+    for (let i = 0; i < this.width; i++) {
+      for (let j = this.height - 1; j > 0; j--) {
+        if (this.board[j][i] === "." && this.board[j-1][i] !== ".") {
+          this.board[j][i] = this.board[j-1][i];
+          this.board[j-1][i] = ".";
+        }
+      }
+    }
+    /*if (this.board === prevBoard) {
+      this.falling = false;
+    }*/
+  }
+
+  hasFalling() {
+    return this.falling;
   }
 
   toString() {
