@@ -15,7 +15,7 @@ export class Board {
   }
 
   drop(block) {
-    
+    this.board[0][Math.floor(this.width / 2)] = "X";
   }
 
   toString() {
