@@ -2,22 +2,22 @@ export class Board {
   width;
   height;
   board;
-  dropped;
+  falling;
 
   constructor(width, height) {
     this.width = width;
     this.height = height;
     this.board = Array.from(Array(this.height), () => new Array(this.width).fill("."));
-    this.dropped = false;
+    this.falling = false;
   }
 
   drop(block) {
-    if (this.dropped) {
+    if (this.falling) {
       throw "already falling";
     }
 
     this.board[0][Math.floor(this.width / 2)] = block.color;
-    this.dropped = true;
+    this.falling = true;
   }
 
   tick() {
