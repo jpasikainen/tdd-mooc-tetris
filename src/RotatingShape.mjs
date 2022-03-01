@@ -19,14 +19,14 @@ export class RotatingShape {
   rotateRight() {
     const rotatedShape = this.shape;
     return new RotatingShape(
-        rotatedShape[0].map((val, index) => rotatedShape.map(row => row[index]).reverse())
+        rotatedShape[0].map((_, index) => rotatedShape.map(row => row[index]).reverse())
       )
   }
 
   rotateLeft() {
     const rotatedShape = this.shape;
     return new RotatingShape(
-        rotatedShape[0].map((val, index) => rotatedShape.map(row => row[row.length - 1 - index]))
+        rotatedShape[0].map((_, index) => rotatedShape.map(row => row[row.length - 1 - index]))
       )
   }
 
