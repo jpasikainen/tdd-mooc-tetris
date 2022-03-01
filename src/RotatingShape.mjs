@@ -30,6 +30,15 @@ export class RotatingShape {
          .....
          .....`)
     }
+    if (this.shape.map((r) => r.join("")).join("\n") ===
+      `.OO
+       .OO
+       ...`.replace(/ /g, '')
+       ) return new RotatingShape(
+        `.OO
+        .OO
+        ...`
+       )
 
     const rotatedShape =  Array.from(Array(this.height), () => new Array(this.width));
     for (let i = 0; i < this.height; i++) {
