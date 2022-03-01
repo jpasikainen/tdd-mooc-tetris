@@ -2,26 +2,24 @@ export class Board {
   width;
   height;
   board;
-  falling;
+  fallTicks;
 
   constructor(width, height) {
     this.width = width;
     this.height = height;
     this.board = Array.from(Array(this.height), () => new Array(this.width).fill("."));
-    this.falling = false;
+    this.fallTicks = 0;
   }
 
   drop(block) {
-    if (this.falling) {
+    if (this.fallTicks !== 0) {
       throw "already falling";
     }
-
+    this.fallTicks += 1;
     this.board[0][Math.floor(this.width / 2)] = block.color;
-    this.falling = true;
   }
 
   tick() {
-    const prevBoard = this.board;
     for (let i = 0; i < this.width; i++) {
       for (let j = this.height - 1; j > 0; j--) {
         if (this.board[j][i] === "." && this.board[j-1][i] !== ".") {
@@ -30,13 +28,14 @@ export class Board {
         }
       }
     }
-    /*if (this.board === prevBoard) {
-      this.falling = false;
-    }*/
+    this.fallTicks += 1;
+    if (this.fallTicks === this.height) {
+      this.fallTicks = 0;
+    }
   }
 
   hasFalling() {
-    return this.falling;
+    return this.fallTicks === 0;
   }
 
   toString() {
