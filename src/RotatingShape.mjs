@@ -13,6 +13,8 @@ export class RotatingShape {
     this.width = this.shape[0].length;
     this.height = this.shape.length;
     Object.freeze(this.shape);
+    Object.freeze(this.width);
+    Object.freeze(this.height);
   }
 
   // source https://stackoverflow.com/questions/15170942/how-to-rotate-a-matrix-in-an-array-in-javascript
