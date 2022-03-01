@@ -10,4 +10,12 @@ export class Tetromino {
      TTT
      ...`
   );
+
+  static I_SHAPE = new RotatingShape(
+    `.....
+     .....
+     IIII.
+     .....
+     .....`
+  );
 }
