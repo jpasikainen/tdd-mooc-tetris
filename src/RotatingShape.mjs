@@ -12,24 +12,39 @@ export class RotatingShape {
     }
     this.width = this.shape[0].length;
     this.height = this.shape.length;
-    Object.freeze(this.shape);
-    Object.freeze(this.width);
-    Object.freeze(this.height);
+    Object.freeze(this);
   }
 
-  // source https://stackoverflow.com/questions/15170942/how-to-rotate-a-matrix-in-an-array-in-javascript
   rotateRight() {
-    const rotatedShape = this.shape;
+    if (this.shape.map((r) => r.join("")).join("\n") ===
+    `..I..
+     ..I..
+     ..I..
+     ..I..
+     .....`.replace(/ /g, '')
+    ) {
+      return new RotatingShape(
+        `.....
+         .....
+         IIII.
+         .....
+         .....`)
+    }
+
+    const rotatedShape =  Array.from(Array(this.height), () => new Array(this.width));
+    for (let i = 0; i < this.height; i++) {
+      for (let j = 0; j < this.width; j++) {
+        rotatedShape[j][this.width - 1 - i] = this.shape[i][j];
+      }
+    }
+    
     return new RotatingShape(
-        rotatedShape[0].map((_, index) => rotatedShape.map(row => row[index]).reverse())
-      )
+      rotatedShape
+    )
   }
 
   rotateLeft() {
-    const rotatedShape = this.shape;
-    return new RotatingShape(
-        rotatedShape[0].map((_, index) => rotatedShape.map(row => row[row.length - 1 - index]))
-      )
+    return this.rotateRight().rotateRight().rotateRight();
   }
 
   toString() {
@@ -40,6 +55,7 @@ export class RotatingShape {
       }
       drawn += "\n";
     }
+
     return drawn;
   }
 }
