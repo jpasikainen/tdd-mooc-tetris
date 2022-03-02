@@ -101,6 +101,11 @@ export class Board {
     }
   }
 
+  moveDown() {
+    this.draw();
+    this.moveBlockDown();
+  }
+
   toString() {
     let drawn = "";
     for (let i = 0; i < this.height; i++) {
