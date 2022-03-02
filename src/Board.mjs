@@ -1,3 +1,5 @@
+import { RotatingShape } from "./RotatingShape.mjs";
+
 export class Board {
   width;
   height;
@@ -25,7 +27,18 @@ export class Board {
     }
     this.falling = true;
     this.boardOnSamePosition = 0;
-    this.board[0][Math.floor(this.width / 2)] = block.color;
+    
+    if (block instanceof RotatingShape) {
+      const middle = Math.floor(this.width / 2) - Math.floor(block.width / 2) - 1
+      
+      for (let i = 0; i < block.height; i++) {
+        for (let j = 0; j < block.width; j++) {
+          this.board[i][j + middle] = block.shape[i][j];
+        }
+      }
+    } else {
+      this.board[0][Math.floor(this.width / 2)] = block.color;
+    }
   }
 
   tick() {

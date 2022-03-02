@@ -2,6 +2,7 @@ export class RotatingShape {
   shape;
   width;
   height;
+  color;
 
   constructor(shape) {
     if (!Array.isArray(shape)) {
