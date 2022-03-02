@@ -48,6 +48,9 @@ export class Board {
           this.board[j][i] = this.board[j-1][i];
           this.board[j-1][i] = ".";
         }
+        if (this.board[j][i] !== "." && this.board[j-1][i] !== ".") {
+          break;
+        }
       }
     }
     if (this.prevBoard && JSON.stringify(this.prevBoard) === JSON.stringify(this.board)) {
