@@ -79,6 +79,17 @@ export class Board {
     }
   }
 
+  moveLeft() {
+    this.draw();
+    this.fallingBlockPos[0] -= 1; // hack?
+    this.fallingBlockPos[1] -= 1;
+    for (let i = 0; i < this.fallingBlock.height; i++) {
+      for (let j = 0; j < this.fallingBlock.width; j++) {
+        this.board[this.fallingBlockPos[0]+i][this.fallingBlockPos[1]+j] = this.fallingBlock.shape[i][j];
+      }
+    }
+  }
+
   toString() {
     let drawn = "";
     for (let i = 0; i < this.height; i++) {
