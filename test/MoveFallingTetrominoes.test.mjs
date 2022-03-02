@@ -6,13 +6,10 @@ describe("Moving tetrominoes", () => {
   let board;
   beforeEach(() => {
     board = new Board(10, 6);
+    board.drop(Tetromino.T_SHAPE);
   });
 
-  describe("a falling tetrominoe", () => {
-    beforeEach(() => {
-      board.drop(Tetromino.T_SHAPE);
-    });
-    
+  describe("a falling tetrominoe", () => {    
     it("can be moved left", () => {
       board.moveLeft();
       expect(board.toString()).to.equalShape(
