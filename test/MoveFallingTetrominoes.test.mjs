@@ -43,5 +43,19 @@ describe("Moving tetrominoes", () => {
          ..........`
       );
     });
+    it("stops on left border", () => {
+      board.moveLeft();
+      board.moveLeft();
+      board.moveLeft();
+      board.moveLeft();
+      expect(board.toString()).to.equalShape(
+        `..........
+         .T........
+         TTT.......
+         ..........
+         ..........
+         ..........`
+      );
+    });
   });
 });
