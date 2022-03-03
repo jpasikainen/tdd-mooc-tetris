@@ -80,14 +80,23 @@ export class Board {
   }
 
   moveLeft() {
+    const prevBoard = this.board;
     this.draw();
-    this.fallingBlockPos[0] -= 1; // hack?
     this.fallingBlockPos[1] -= 1;
     for (let i = 0; i < this.fallingBlock.height; i++) {
       for (let j = 0; j < this.fallingBlock.width; j++) {
-        this.board[this.fallingBlockPos[0]+i][this.fallingBlockPos[1]+j] = this.fallingBlock.shape[i][j];
+        if (this.fallingBlock.shape[i][j] !== "." && j + this.fallingBlockPos[1] >= 0) {
+          this.board[this.fallingBlockPos[0]+i-1][this.fallingBlockPos[1]+j] = this.fallingBlock.shape[i][j];
+        } else if (j + this.fallingBlockPos[1] < 0) {
+          this.board = prevBoard;
+          return;
+        }
       }
     }
+  }
+
+  thrower() {
+    throw this.fallingBlockPos[0]
   }
 
   moveRight() {
