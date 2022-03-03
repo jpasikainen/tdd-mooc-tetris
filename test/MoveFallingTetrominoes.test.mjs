@@ -32,6 +32,20 @@ describe("Moving tetrominoes", () => {
          ...TTT....`
       );
     });
+    it("when moving left", () => {
+      board.moveLeft();
+      board.moveLeft();
+      board.moveDown();
+      board.moveRight();
+      expect(board.toString()).to.equalShape(
+        `..........
+         ..........
+         ..........
+         ..T.......
+         .TTTT.....
+         ...TTT....`
+      );
+    });
   })
 
   describe("a falling tetrominoe", () => {    
