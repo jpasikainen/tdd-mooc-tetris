@@ -116,8 +116,7 @@ export class Board {
   }
 
   moveDown() {
-    this.draw();
-    this.moveBlockDown();
+    this.tick();
   }
 
   toString() {

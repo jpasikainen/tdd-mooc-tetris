@@ -73,5 +73,18 @@ describe("Moving tetrominoes", () => {
          ..........`
       );
     });
+    it("stop on the bottom", () => {
+      for (let i = 0; i < 12; i++) {
+        board.moveDown();
+      }
+      expect(board.toString()).to.equalShape(
+        `..........
+         ..........
+         ..........
+         ..........
+         ....T.....
+         ...TTT....`
+      );
+    });
   });
 });
