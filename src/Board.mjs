@@ -85,9 +85,9 @@ export class Board {
     this.fallingBlockPos[1] -= 1;
     for (let i = 0; i < this.fallingBlock.height; i++) {
       for (let j = 0; j < this.fallingBlock.width; j++) {
-        if (this.fallingBlock.shape[i][j] !== "." && j + this.fallingBlockPos[1] >= 0) {
+        if (this.fallingBlock.shape[i][j] !== "." && j + this.fallingBlockPos[1] >= 0 && this.landed[this.fallingBlockPos[0]+i-1][this.fallingBlockPos[1]+j] === ".") {
           this.board[this.fallingBlockPos[0]+i-1][this.fallingBlockPos[1]+j] = this.fallingBlock.shape[i][j];
-        } else if (j + this.fallingBlockPos[1] < 0) {
+        } else if (j + this.fallingBlockPos[1] < 0 || this.landed[this.fallingBlockPos[0]+i-1][this.fallingBlockPos[1]+j] !== ".") {
           this.board = prevBoard;
           return;
         }
@@ -105,9 +105,9 @@ export class Board {
     this.fallingBlockPos[1] += 1;
     for (let i = 0; i < this.fallingBlock.height; i++) {
       for (let j = 0; j < this.fallingBlock.width; j++) {
-        if (this.fallingBlock.shape[i][j] !== "." && j + this.fallingBlockPos[1] < this.width) {
+        if (this.fallingBlock.shape[i][j] !== "." && j + this.fallingBlockPos[1] < this.width && this.landed[this.fallingBlockPos[0]+i-1][this.fallingBlockPos[1]+j] === ".") {
           this.board[this.fallingBlockPos[0]+i-1][this.fallingBlockPos[1]+j] = this.fallingBlock.shape[i][j];
-        } else if (j + this.fallingBlockPos[1] >= this.width) {
+        } else if (j + this.fallingBlockPos[1] >= this.width || this.landed[this.fallingBlockPos[0]+i-1][this.fallingBlockPos[1]+j] !== ".") {
           this.board = prevBoard;
           return;
         }

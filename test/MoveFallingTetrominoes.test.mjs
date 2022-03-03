@@ -9,6 +9,31 @@ describe("Moving tetrominoes", () => {
     board.drop(Tetromino.T_SHAPE);
   });
 
+  describe("dont clip", () => {
+    beforeEach(() => {
+      for (let i = 0; i < 10; i++) {
+        board.moveDown();
+      }
+      board.drop(Tetromino.T_SHAPE);
+      board.moveDown();
+      board.moveDown();
+    });
+    it("when moving left", () => {
+      board.moveRight();
+      board.moveRight();
+      board.moveDown();
+      board.moveLeft();
+      expect(board.toString()).to.equalShape(
+        `..........
+         ..........
+         ..........
+         ......T...
+         ....TTTT..
+         ...TTT....`
+      );
+    });
+  })
+
   describe("a falling tetrominoe", () => {    
     it("can be moved left", () => {
       board.moveLeft();
