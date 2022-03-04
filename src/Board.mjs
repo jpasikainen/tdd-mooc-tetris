@@ -1,3 +1,5 @@
+import { RotatingShape } from "./RotatingShape.mjs";
+
 export class Board {
   width;
   height;
@@ -23,9 +25,8 @@ export class Board {
     if (this.hasFalling()) throw "already falling";
     this.fallingBlock = block;
     let middle = Math.floor(this.width / 2) - Math.floor(block.width / 2);
-    if (block.width > 1) middle -= 1;
     this.fallingBlockPos = [0, middle];
-    //this.tick();
+    if (block instanceof RotatingShape) this.fallingBlockPos[0] -= 1;
     this.renderBlock();
   }
 
@@ -109,6 +110,9 @@ export class Board {
   }
 
   rotateLeft() {
+    if (this.fallingBlock === null) return
+    if (this.fallingBlockPos[0] === -1) this.moveDown();
+
     this.fallingBlock = this.fallingBlock.rotateLeft();
     if (!this.moveBlock()) {
       if (this.moveRight()) this.fallingBlock = this.fallingBlock.rotateLeft();
@@ -116,6 +120,9 @@ export class Board {
   }
 
   rotateRight() {
+    if (this.fallingBlock === null) return
+    if (this.fallingBlockPos[0] === -1) this.moveDown();
+    
     this.fallingBlock = this.fallingBlock.rotateRight();
     if (!this.moveBlock()) {
       if (this.moveLeft()) this.fallingBlock = this.fallingBlock.rotateRight();
