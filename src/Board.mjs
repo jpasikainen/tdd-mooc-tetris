@@ -91,7 +91,11 @@ export class Board {
           lineLength -= 1;
         }
       }
-      if (lineLength === 0) throw "line"
+      if (lineLength === 0) {
+        for (let j = 0; j < this.width; j++) {
+          this.landed[i][j] = "."
+        }
+      }
     }
   }
 
