@@ -1,3 +1,5 @@
+import { Shapes } from "./Shapes.mjs";
+
 export class RotatingShape {
   shape;
   width;
@@ -17,6 +19,7 @@ export class RotatingShape {
   }
 
   rotateRight() {
+    //if (this.shape === Tetromino.I_SHAPE_ROT) return Tetromino.I_SHAPE;
     if (this.shape.map((r) => r.join("")).join("\n") ===
     `..I..
      ..I..

@@ -1,31 +1,12 @@
 import { RotatingShape } from "./RotatingShape.mjs";
+import { Shapes } from "./Shapes.mjs";
 
 export class Tetromino {
-  static T_SHAPE = new RotatingShape(
-    `.T.
-     TTT
-     ...`
-  );
+  static T_SHAPE = new RotatingShape(Shapes.T_SHAPE);
 
-  static I_SHAPE = new RotatingShape(
-    `.....
-     .....
-     IIII.
-     .....
-     .....`
-  );
+  static I_SHAPE = new RotatingShape(Shapes.I_SHAPE);
 
-  static I_SHAPE_ROT = new RotatingShape(
-    `..I..
-     ..I..
-     ..I..
-     ..I..
-     .....`
-  );
+  static I_SHAPE_ROT = new RotatingShape(Shapes.I_SHAPE_ROT);
 
-  static O_SHAPE = new RotatingShape(
-    `.OO
-     .OO
-     ...`
-  );
+  static O_SHAPE = new RotatingShape(Shapes.O_SHAPE);
 }
