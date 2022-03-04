@@ -5,7 +5,7 @@ export class Shapes {
      .T..
      ....`,
     `.T..
-     .TT.
+     TT..
      .T..
      ....`,
     `.T..
@@ -13,7 +13,7 @@ export class Shapes {
      ....
      ....`,
     `.T..
-     TT..
+     .TT.
      .T..
      ....`,
   ];
