@@ -70,4 +70,30 @@ describe("Line clears when", () => {
        OO.T.`
     );
   });
+
+  it("multiple full lines", () => {
+    board = new Board(4,4);
+    board.drop(Tetromino.O_SHAPE[0]);
+    board.moveLeft();
+    board.moveDown();
+    board.moveDown();
+    board.tick();
+    board.drop(Tetromino.O_SHAPE[0]);
+    board.moveRight();
+    board.moveDown();
+    board.moveDown();
+    expect(board.toString()).to.equalShape(
+      `....
+       ....
+       OOOO
+       OOOO`
+    );
+    board.tick();
+    expect(board.toString()).to.equalShape(
+      `....
+       ....
+       ....
+       ....`
+    );
+  });
 });
