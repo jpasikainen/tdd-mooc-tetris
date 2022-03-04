@@ -84,6 +84,7 @@ export class Board {
   }
 
   clearLine() {
+    let clearedLines = [];
     for (let i = 0; i < this.height; i++) {
       let lineLength = this.width;
       for (let j = 0; j < this.width; j++) {
@@ -95,8 +96,14 @@ export class Board {
         for (let j = 0; j < this.width; j++) {
           this.landed[i][j] = "."
         }
+        clearedLines.push(i);
       }
     }
+    for (let line in clearedLines) {
+      const arr = this.landed.splice(clearedLines[line], 1);
+      this.landed.splice(0, 0, ...arr);
+    }
+    this.draw();
   }
 
   tick() {
@@ -150,7 +157,7 @@ export class Board {
     let drawn = "";
     for (let i = 0; i < this.height; i++) {
       for (let j = 0; j < this.width; j++) {
-        drawn += this.board[i][j].toString();
+        drawn += this.board[i][j];
       }
       drawn += "\n";
     }
