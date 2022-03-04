@@ -7,6 +7,7 @@ export class Board {
   fallingBlock;
   fallingBlockPos;
   landed;
+  scoreListeners;
 
   constructor(width, height) {
     this.width = width;
@@ -15,6 +16,15 @@ export class Board {
     this.fallingBlock = null;
     this.fallingBlockPos = null;
     this.landed = Array.from(Array(this.height), () => new Array(this.width).fill("."));
+    this.scoreListeners = [];
+  }
+
+  addScoreListener(listener) {
+    this.scoreListeners.push(listener);
+  }
+
+  broadcastScore() {
+    for (let listener in this.scoreListeners) this.scoreListeners[listener].lineCleared();
   }
 
   hasFalling() {
