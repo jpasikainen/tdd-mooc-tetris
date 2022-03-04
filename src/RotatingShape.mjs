@@ -20,16 +20,7 @@ export class RotatingShape {
 
   rotateRight() {
     if (this.toString() === Shapes.I_SHAPE[1].split(" ").join("")+ "\n") return new RotatingShape(Shapes.I_SHAPE[0]);
-    
-    if (this.shape.map((r) => r.join("")).join("\n") ===
-      `.OO
-       .OO
-       ...`.replace(/ /g, '')
-       ) return new RotatingShape(
-        `.OO
-        .OO
-        ...`
-       )
+    if (this.toString() === Shapes.O_SHAPE.split(" ").join("")+ "\n") return new RotatingShape(Shapes.O_SHAPE);
 
     const rotatedShape =  Array.from(Array(this.height), () => new Array(this.width));
     for (let i = 0; i < this.height; i++) {
