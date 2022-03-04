@@ -19,7 +19,8 @@ export class RotatingShape {
   }
 
   rotateRight() {
-    if (this.toString() === Shapes.I_SHAPE_ROT.split(" ").join("")+ "\n") return new RotatingShape(Shapes.I_SHAPE);
+    if (this.toString() === Shapes.I_SHAPE[1].split(" ").join("")+ "\n") return new RotatingShape(Shapes.I_SHAPE[0]);
+    
     if (this.shape.map((r) => r.join("")).join("\n") ===
       `.OO
        .OO
