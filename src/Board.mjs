@@ -110,12 +110,16 @@ export class Board {
 
   rotateLeft() {
     this.fallingBlock = this.fallingBlock.rotateLeft();
-    this.moveBlock();
+    if (!this.moveBlock()) {
+      throw "wallkick"
+    }
   }
 
   rotateRight() {
     this.fallingBlock = this.fallingBlock.rotateRight();
-    this.moveBlock();
+    if (!this.moveBlock()) {
+      throw "wallkick"
+    }
   }
 
   toString() {
