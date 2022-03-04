@@ -66,17 +66,6 @@ export class Board {
     this.draw();
     if (this.collides()) {
       this.board = prevBoard;
-      return;
-    }
-    this.renderBlock();
-  }
-
-  moveBlockDown() {
-    const prevBoard = this.board;
-    this.fallingBlockPos[0] += 1;
-    this.draw();
-    if (this.collides()) {
-      this.board = prevBoard;
       return false;
     }
     this.renderBlock();
@@ -96,8 +85,8 @@ export class Board {
   tick() {
     if (this.fallingBlock === null) return;
     
-
-    if (!this.moveBlockDown()) {
+    this.fallingBlockPos[0] += 1;
+    if (!this.moveBlock()) {
       this.addLanded();
       this.fallingBlock = null;
       this.fallingBlockPos = null;
