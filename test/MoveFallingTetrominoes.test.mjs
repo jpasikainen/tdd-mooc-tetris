@@ -6,7 +6,7 @@ describe("Moving tetrominoes", () => {
   let board;
   beforeEach(() => {
     board = new Board(10, 6);
-    board.drop(Tetromino.T_SHAPE);
+    board.drop(Tetromino.T_SHAPE[2]);
   });
 
   describe("dont clip", () => {
@@ -14,7 +14,7 @@ describe("Moving tetrominoes", () => {
       for (let i = 0; i < 10; i++) {
         board.moveDown();
       }
-      board.drop(Tetromino.T_SHAPE);
+      board.drop(Tetromino.T_SHAPE[2]);
       board.moveDown();
       board.moveDown();
     });
