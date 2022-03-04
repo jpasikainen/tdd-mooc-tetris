@@ -1,9 +1,22 @@
 export class Shapes {
-  static T_SHAPE = 
-    `.T.
-     TTT
-     ...`
-  ;
+  static T_SHAPE = [
+    `....
+     TTT.
+     .T..
+     ....`,
+    `.T..
+     TT..
+     .T..
+     ....`,
+    `.T..
+     TTT.
+     ....
+     ....`,
+     `.T..
+      .TT.
+      .T..
+      ....`,
+  ];
 
   static I_SHAPE = [
     `....
