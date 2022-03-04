@@ -85,12 +85,13 @@ export class Board {
 
   clearLine() {
     for (let i = 0; i < this.height; i++) {
+      let lineLength = this.width;
       for (let j = 0; j < this.width; j++) {
-        if (this.board[i][j] === ".") {
-          break;
+        if (this.board[i][j] !== ".") {
+          lineLength -= 1;
         }
-        throw "line clear!"
       }
+      if (lineLength === 0) throw "line"
     }
   }
 
