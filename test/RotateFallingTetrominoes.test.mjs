@@ -114,7 +114,7 @@ describe("Rotating tetrominoes", () => {
       );
     });
 
-    it("wall kick if possible", () => {
+    xit("wall kick if possible", () => {
       board.moveDown();
       board.rotateLeft();
       expect(board.toString()).to.equalShape(

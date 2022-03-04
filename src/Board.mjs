@@ -1,5 +1,3 @@
-import { RotatingShape } from "./RotatingShape.mjs";
-
 export class Board {
   width;
   height;
@@ -39,22 +37,51 @@ export class Board {
     }
   }
 
+  renderBlock() {
+    for (let i = 0; i < this.fallingBlock.height; i++) {
+      for (let j = 0; j < this.fallingBlock.width; j++) {
+        if (this.fallingBlock.shape[i][j] === ".") continue;
+        this.board[this.fallingBlockPos[0]+i][this.fallingBlockPos[1]+j] = this.fallingBlock.shape[i][j];
+      }
+    }
+  }
+
+  collides() {
+    for (let i = 0; i < this.fallingBlock.height; i++) {
+      for (let j = 0; j < this.fallingBlock.width; j++) {
+        if (this.fallingBlock.shape[i][j] === ".") continue;
+        if (this.fallingBlockPos[0]+i >= this.height || this.fallingBlockPos[1]+j < 0 || this.fallingBlockPos[1]+j >= this.width - 1
+          || this.landed[this.fallingBlockPos[0]+i][this.fallingBlockPos[1]+j] !== "."
+        ) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
   moveBlockDown() {
     const prevBoard = this.board;
+    if (this.collides()) {
+      this.board = prevBoard;
+      return false;
+    }
+    this.renderBlock();
+    this.fallingBlockPos[0] += 1;
+    return true;
+
     for (let i = 0; i < this.fallingBlock.height; i++) {
       for (let j = 0; j < this.fallingBlock.width; j++) {
         if (this.fallingBlock.shape[i][j] !== ".") {
           if (i + this.fallingBlockPos[0] < this.height && this.landed[this.fallingBlockPos[0]+i][this.fallingBlockPos[1]+j] === ".") {
             this.board[this.fallingBlockPos[0]+i][this.fallingBlockPos[1]+j] = this.fallingBlock.shape[i][j];
           } else if (!this.bottom) {
-            this.board = prevBoard;
-            return false;
+            
           }
         }
       }
     }
-    this.fallingBlockPos[0] += 1;
-    return true;
+    
   }
 
   addLanded() {
@@ -129,6 +156,7 @@ export class Board {
           this.board[this.fallingBlockPos[0]+i-1][this.fallingBlockPos[1]+j] = this.fallingBlock.shape[i][j];
         } else if (j + this.fallingBlockPos[1] >= this.width || this.landed[this.fallingBlockPos[0]+i-1][this.fallingBlockPos[1]+j] !== ".") {
           this.board = prevBoard;
+          if (this.board[i][j])
           return;
         }
       }
