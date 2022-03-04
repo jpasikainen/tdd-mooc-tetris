@@ -83,12 +83,24 @@ export class Board {
     }
   }
 
+  clearLine() {
+    for (let i = 0; i < this.height; i++) {
+      for (let j = 0; j < this.width; j++) {
+        if (this.board[i][j] === ".") {
+          break;
+        }
+        throw "line clear!"
+      }
+    }
+  }
+
   tick() {
     if (this.fallingBlock === null) return;
     
     this.fallingBlockPos[0] += 1;
     if (!this.moveBlock()) {
       this.addLanded();
+      this.clearLine();
       this.fallingBlock = null;
       this.fallingBlockPos = null;
       this.draw();
