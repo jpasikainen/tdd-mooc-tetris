@@ -101,6 +101,18 @@ describe("Rotating tetrominoes", () => {
          ..TTT.....`
       );
     });
+
+    it("do not rotate right", () => {
+      board.rotateLeft();
+      expect(board.toString()).to.equalShape(
+        `..........
+         ..........
+         T..T......
+         TTTTT.....
+         T..T......
+         ..TTT.....`
+      );
+    });
   });
 });
   
