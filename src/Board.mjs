@@ -61,9 +61,20 @@ export class Board {
     return false;
   }
 
+  moveBlock() {
+    const prevBoard = this.board;
+    this.draw();
+    if (this.collides()) {
+      this.board = prevBoard;
+      return;
+    }
+    this.renderBlock();
+  }
+
   moveBlockDown() {
     const prevBoard = this.board;
     this.fallingBlockPos[0] += 1;
+    this.draw();
     if (this.collides()) {
       this.board = prevBoard;
       return false;
@@ -84,7 +95,7 @@ export class Board {
 
   tick() {
     if (this.fallingBlock === null) return;
-    this.draw();
+    
 
     if (!this.moveBlockDown()) {
       this.addLanded();
@@ -95,25 +106,13 @@ export class Board {
   }
 
   moveLeft() {
-    const prevBoard = this.board;
-    this.draw();
     this.fallingBlockPos[1] -= 1;
-    if (this.collides()) {
-      this.board = prevBoard;
-      return;
-    }
-    this.renderBlock();
+    this.moveBlock();
   }
 
   moveRight() {
-    const prevBoard = this.board;
-    this.draw();
     this.fallingBlockPos[1] += 1;
-    if (this.collides()) {
-      this.board = prevBoard;
-      return;
-    }
-    this.renderBlock();
+    this.moveBlock();
   }
 
   moveDown() {
