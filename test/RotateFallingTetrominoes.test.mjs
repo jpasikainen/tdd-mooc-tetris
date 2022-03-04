@@ -31,4 +31,19 @@ describe("Rotating tetrominoes", () => {
        ..........`
     );
   });
+  it("rotate left and right", () => {
+    board.rotateRight();
+    board.rotateLeft();
+    board.rotateLeft();
+    board.rotateLeft();
+    board.rotateLeft();
+    expect(board.toString()).to.equalShape(
+      `....T.....
+       ....TT....
+       ....T.....
+       ..........
+       ..........
+       ..........`
+    );
+  });
 });
