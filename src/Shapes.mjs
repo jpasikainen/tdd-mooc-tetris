@@ -6,14 +6,14 @@ export class Shapes {
   ;
 
   static I_SHAPE = [
-    `.....
-    .....
-    IIII.
-    .....`,
-    `..I..
-     ..I..
-     ..I..
-     ..I..`
+    `....
+     IIII
+     ....
+     ....`,
+    `..I.
+     ..I.
+     ..I.
+     ..I.`
   ];
 
 

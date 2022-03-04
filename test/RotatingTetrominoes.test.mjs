@@ -1,6 +1,7 @@
 
 import { expect } from "chai";
 import { Tetromino } from "../src/Tetromino.mjs";
+import { Shapes } from "../src/Shapes.mjs";
 
 function distinctOrientations(shape) {
   const distinct = new Set();
@@ -63,13 +64,7 @@ describe("The I shape", () => {
   });
 
   it("can be rotated right/clockwise", () => {
-    expect(shape.rotateRight().toString()).to.equalShape(
-      `..I..
-       ..I..
-       ..I..
-       ..I..
-       .....`
-    );
+    expect(shape.rotateRight().toString()).to.equalShape(Shapes.I_SHAPE[1]);
   });
 
   it("can be rotated left/counter-clockwise", () => {
@@ -77,8 +72,7 @@ describe("The I shape", () => {
       `..I..
        ..I..
        ..I..
-       ..I..
-       .....`
+       ..I..`
     );
   });
 
