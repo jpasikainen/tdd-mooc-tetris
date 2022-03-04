@@ -113,6 +113,19 @@ describe("Rotating tetrominoes", () => {
          ..TTT.....`
       );
     });
+
+    it("wall kick if possible", () => {
+      board.moveDown();
+      board.rotateLeft();
+      expect(board.toString()).to.equalShape(
+        `..........
+         ..........
+         ...T......
+         .TTTT.....
+         TTTT......
+         ..TTT.....`
+      );
+    });
   });
 });
   
