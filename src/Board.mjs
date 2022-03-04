@@ -96,12 +96,12 @@ export class Board {
 
   moveLeft() {
     this.fallingBlockPos[1] -= 1;
-    this.moveBlock();
+    return this.moveBlock();
   }
 
   moveRight() {
     this.fallingBlockPos[1] += 1;
-    this.moveBlock();
+    return this.moveBlock();
   }
 
   moveDown() {
@@ -111,14 +111,14 @@ export class Board {
   rotateLeft() {
     this.fallingBlock = this.fallingBlock.rotateLeft();
     if (!this.moveBlock()) {
-      throw "wallkick"
+      if (this.moveRight()) this.fallingBlock = this.fallingBlock.rotateLeft();
     }
   }
 
   rotateRight() {
     this.fallingBlock = this.fallingBlock.rotateRight();
     if (!this.moveBlock()) {
-      throw "wallkick"
+      if (this.moveLeft()) this.fallingBlock = this.fallingBlock.rotateRight();
     }
   }
 
