@@ -8,9 +8,9 @@ export class Shapes {
      TT..
      .T..
      ....`,
-    `.T..
+    `....
+     .T..
      TTT.
-     ....
      ....`,
     `.T..
      .TT.
@@ -26,15 +26,35 @@ export class Shapes {
     `..I.
      ..I.
      ..I.
+     ..I.`,
+     `....
+     IIII
+     ....
+     ....`,
+    `..I.
+     ..I.
+     ..I.
      ..I.`
   ];
 
 
-  static O_SHAPE = 
+  static O_SHAPE = [
+    `....
+     .OO.
+     .OO.
+     ....`,
+    `....
+     .OO.
+     .OO.
+     ....`,
+    `....
+     .OO.
+     .OO.
+     ....`,
     `....
      .OO.
      .OO.
      ....`
-  ;
+  ];
 }
   
