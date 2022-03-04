@@ -109,36 +109,13 @@ export class Board {
   }
 
   rotateLeft() {
-    const prevBoard = this.board;
-    this.draw();
     this.fallingBlock = this.fallingBlock.rotateLeft();
-    for (let i = 0; i < this.fallingBlock.height; i++) {
-      for (let j = 0; j < this.fallingBlock.width; j++) {
-        if (this.fallingBlock.shape[i][j] !== "." && this.fallingBlockPos[1]+j > 0 && this.fallingBlockPos[1]+j < this.width) {
-          this.board[this.fallingBlockPos[0]+i-1][this.fallingBlockPos[1]+j] = this.fallingBlock.shape[i][j];
-        } else if (j + this.fallingBlockPos[1] >= this.width || this.landed[this.fallingBlockPos[0]+i-1][this.fallingBlockPos[1]+j] !== ".") {
-          this.board = prevBoard;
-          if (this.board[i][j])
-          return;
-        }
-      }
-    }
+    this.moveBlock();
   }
 
   rotateRight() {
-    const prevBoard = this.board;
-    this.draw();
     this.fallingBlock = this.fallingBlock.rotateRight();
-    for (let i = 0; i < this.fallingBlock.height; i++) {
-      for (let j = 0; j < this.fallingBlock.width; j++) {
-        if (this.fallingBlock.shape[i][j] !== "." && this.fallingBlockPos[1]+j > 0 && this.fallingBlockPos[1]+j < this.width) {
-          this.board[this.fallingBlockPos[0]+i-1][this.fallingBlockPos[1]+j] = this.fallingBlock.shape[i][j];
-        } else if (j + this.fallingBlockPos[1] >= this.width || this.landed[this.fallingBlockPos[0]+i-1][this.fallingBlockPos[1]+j] !== ".") {
-          this.board = prevBoard;
-          return;
-        }
-      }
-    }
+    this.moveBlock();
   }
 
   toString() {
