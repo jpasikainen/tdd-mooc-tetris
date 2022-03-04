@@ -5,8 +5,10 @@ export class RotatingShape {
   width;
   height;
   color;
+  index;
 
-  constructor(shape) {
+  constructor(shape, index = null) {
+    if (index) this.index = index;
     if (!Array.isArray(shape)) {
       shape = shape.split(" ").join("");
       this.shape = shape.split("\n").map((row) => row.split(""));
@@ -20,7 +22,14 @@ export class RotatingShape {
 
   rotateRight() {
     if (this.toString() === Shapes.I_SHAPE[1].split(" ").join("")+ "\n") return new RotatingShape(Shapes.I_SHAPE[0]);
-    if (this.toString() === Shapes.O_SHAPE.split(" ").join("")+ "\n") return new RotatingShape(Shapes.O_SHAPE);
+
+    if (this.toString() === Shapes.T_SHAPE[0].split(" ").join("")+ "\n") return new RotatingShape(Shapes.T_SHAPE[1]);
+    if (this.toString() === Shapes.T_SHAPE[1].split(" ").join("")+ "\n") return new RotatingShape(Shapes.T_SHAPE[2]);
+    if (this.toString() === Shapes.T_SHAPE[2].split(" ").join("")+ "\n") return new RotatingShape(Shapes.T_SHAPE[3]);
+    if (this.toString() === Shapes.T_SHAPE[3].split(" ").join("")+ "\n") return new RotatingShape(Shapes.T_SHAPE[0]);
+
+    if (this.toString() === Shapes.O_SHAPE[0].split(" ").join("")+ "\n") return new RotatingShape(Shapes.O_SHAPE[0]);
+    if (this.toString() === Shapes.O_SHAPE[0].split(" ").join("")+ "\n") return new RotatingShape(Shapes.O_SHAPE[0]);
 
     const rotatedShape =  Array.from(Array(this.height), () => new Array(this.width));
     for (let i = 0; i < this.height; i++) {
@@ -29,9 +38,7 @@ export class RotatingShape {
       }
     }
     
-    return new RotatingShape(
-      rotatedShape
-    )
+    return new RotatingShape(rotatedShape);
   }
 
   rotateLeft() {
