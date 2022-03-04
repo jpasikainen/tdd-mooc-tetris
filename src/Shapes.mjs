@@ -5,17 +5,17 @@ export class Shapes {
      .T..
      ....`,
     `.T..
-     TT..
+     .TT.
      .T..
      ....`,
     `.T..
      TTT.
      ....
      ....`,
-     `.T..
-      .TT.
-      .T..
-      ....`,
+    `.T..
+     TT..
+     .T..
+     ....`,
   ];
 
   static I_SHAPE = [
