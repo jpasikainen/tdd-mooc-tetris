@@ -47,9 +47,60 @@ describe("Rotating tetrominoes", () => {
          ..........`
       );
     });
+    it("land when rotated", () => {
+      board.moveDown();
+      board.moveDown();
+      board.moveDown();
+      board.moveDown();
+      board.moveDown();
+      board.drop(Tetromino.T_SHAPE);
+      board.moveLeft();
+      board.rotateRight();
+      board.moveDown();
+      board.moveDown();
+      board.moveDown();
+      expect(board.toString()).to.equalShape(
+        `..........
+         ..........
+         ...T......
+         ...TT.....
+         ...TT.....
+         ...TTT....`
+      );
+    })
   });
-  describe("", () => {
+  describe("when no free space", () => {
+    beforeEach(() => {
+      board.moveLeft();
+      for (let i = 0; i < 5; i++) {
+        board.moveDown();
+      }
+      board.drop(Tetromino.T_SHAPE);
+      board.moveLeft();
+      for (let i = 0; i < 4; i++) {
+        board.moveDown();
+      }
+      board.drop(Tetromino.T_SHAPE);
+      board.rotateRight();
+      board.moveLeft();
+      board.moveLeft();
+      board.moveLeft();
+      board.moveLeft();
+      board.moveDown();
+      board.moveDown();
+    });
     
-  })
+    it("do not rotate left", () => {
+      board.rotateLeft();
+      expect(board.toString()).to.equalShape(
+        `..........
+         ..........
+         T..T......
+         TTTTT.....
+         T..T......
+         ..TTT.....`
+      );
+    });
+  });
 });
   
