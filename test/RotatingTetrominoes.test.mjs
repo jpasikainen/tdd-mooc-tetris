@@ -68,12 +68,7 @@ describe("The I shape", () => {
   });
 
   it("can be rotated left/counter-clockwise", () => {
-    expect(shape.rotateLeft().toString()).to.equalShape(
-      `..I..
-       ..I..
-       ..I..
-       ..I..`
-    );
+    expect(shape.rotateLeft().toString()).to.equalShape(Shapes.I_SHAPE[1]);
   });
 
   it("has 2 distinct orientations", () => {
