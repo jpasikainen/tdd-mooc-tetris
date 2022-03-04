@@ -23,8 +23,8 @@ export class Board {
     this.scoreListeners.push(listener);
   }
 
-  broadcastScore() {
-    for (let listener in this.scoreListeners) this.scoreListeners[listener].lineCleared();
+  broadcastScore(lines) {
+    for (let listener in this.scoreListeners) this.scoreListeners[listener].linesCleared(lines);
   }
 
   hasFalling() {
@@ -113,6 +113,7 @@ export class Board {
       const arr = this.landed.splice(clearedLines[line], 1);
       this.landed.splice(0, 0, ...arr);
     }
+    this.broadcastScore(clearedLines.length);
     this.draw();
   }
 
