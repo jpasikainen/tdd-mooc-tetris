@@ -25,7 +25,8 @@ export class Board {
     let middle = Math.floor(this.width / 2) - Math.floor(block.width / 2);
     if (block.width > 1) middle -= 1;
     this.fallingBlockPos = [0, middle];
-    this.tick();
+    //this.tick();
+    this.renderBlock();
   }
 
   draw() {
@@ -50,7 +51,7 @@ export class Board {
     for (let i = 0; i < this.fallingBlock.height; i++) {
       for (let j = 0; j < this.fallingBlock.width; j++) {
         if (this.fallingBlock.shape[i][j] === ".") continue;
-        if (this.fallingBlockPos[0]+i >= this.height || this.fallingBlockPos[1]+j < 0 || this.fallingBlockPos[1]+j >= this.width - 1
+        if (this.fallingBlockPos[0]+i >= this.height || this.fallingBlockPos[1]+j < 0 || this.fallingBlockPos[1]+j >= this.width
           || this.landed[this.fallingBlockPos[0]+i][this.fallingBlockPos[1]+j] !== "."
         ) {
           return true;
@@ -62,26 +63,13 @@ export class Board {
 
   moveBlockDown() {
     const prevBoard = this.board;
+    this.fallingBlockPos[0] += 1;
     if (this.collides()) {
       this.board = prevBoard;
       return false;
     }
     this.renderBlock();
-    this.fallingBlockPos[0] += 1;
     return true;
-
-    for (let i = 0; i < this.fallingBlock.height; i++) {
-      for (let j = 0; j < this.fallingBlock.width; j++) {
-        if (this.fallingBlock.shape[i][j] !== ".") {
-          if (i + this.fallingBlockPos[0] < this.height && this.landed[this.fallingBlockPos[0]+i][this.fallingBlockPos[1]+j] === ".") {
-            this.board[this.fallingBlockPos[0]+i][this.fallingBlockPos[1]+j] = this.fallingBlock.shape[i][j];
-          } else if (!this.bottom) {
-            
-          }
-        }
-      }
-    }
-    
   }
 
   addLanded() {
@@ -110,36 +98,22 @@ export class Board {
     const prevBoard = this.board;
     this.draw();
     this.fallingBlockPos[1] -= 1;
-    for (let i = 0; i < this.fallingBlock.height; i++) {
-      for (let j = 0; j < this.fallingBlock.width; j++) {
-        if (this.fallingBlock.shape[i][j] !== "." && j + this.fallingBlockPos[1] >= 0 && this.landed[this.fallingBlockPos[0]+i-1][this.fallingBlockPos[1]+j] === ".") {
-          this.board[this.fallingBlockPos[0]+i-1][this.fallingBlockPos[1]+j] = this.fallingBlock.shape[i][j];
-        } else if (j + this.fallingBlockPos[1] < 0 || this.landed[this.fallingBlockPos[0]+i-1][this.fallingBlockPos[1]+j] !== ".") {
-          this.board = prevBoard;
-          return;
-        }
-      }
+    if (this.collides()) {
+      this.board = prevBoard;
+      return;
     }
-  }
-
-  thrower() {
-    throw this.fallingBlockPos[0]
+    this.renderBlock();
   }
 
   moveRight() {
     const prevBoard = this.board;
     this.draw();
     this.fallingBlockPos[1] += 1;
-    for (let i = 0; i < this.fallingBlock.height; i++) {
-      for (let j = 0; j < this.fallingBlock.width; j++) {
-        if (this.fallingBlock.shape[i][j] !== "." && j + this.fallingBlockPos[1] < this.width && this.landed[this.fallingBlockPos[0]+i-1][this.fallingBlockPos[1]+j] === ".") {
-          this.board[this.fallingBlockPos[0]+i-1][this.fallingBlockPos[1]+j] = this.fallingBlock.shape[i][j];
-        } else if (j + this.fallingBlockPos[1] >= this.width || this.landed[this.fallingBlockPos[0]+i-1][this.fallingBlockPos[1]+j] !== ".") {
-          this.board = prevBoard;
-          return;
-        }
-      }
+    if (this.collides()) {
+      this.board = prevBoard;
+      return;
     }
+    this.renderBlock();
   }
 
   moveDown() {
