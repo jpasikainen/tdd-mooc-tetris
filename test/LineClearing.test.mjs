@@ -5,12 +5,12 @@ import { Tetromino } from "../src/Tetromino.mjs";
 describe("Line clears when", () => {
   let board;
   beforeEach(() => {
-    board = new Board(2, 4);
-    board.drop(new Tetromino.I_SHAPE[0])
+    board = new Board(4, 2);
+    board.drop(Tetromino.I_SHAPE[0])
     board.moveDown();
     expect(board.toString()).to.equalShape(
       `....
-       TTTT`
+       IIII`
     );
   });
   it("complete line after tick", () => {
