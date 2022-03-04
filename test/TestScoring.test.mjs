@@ -15,6 +15,12 @@ describe("Score when", () => {
   it("multiple lines are cleared", () => {
     score.linesCleared(1);
     score.linesCleared(4);
-    expect(score.score).to.equal(3040)
+    expect(score.score).to.equal(1240)
+  });
+  it("level is increased", () => {
+    score.linesCleared(4);
+    score.linesCleared(4);
+    score.linesCleared(4);
+    expect(score.score).to.equal(3600)
   });
 });
