@@ -19,21 +19,7 @@ export class RotatingShape {
   }
 
   rotateRight() {
-    //if (this.shape === Tetromino.I_SHAPE_ROT) return Tetromino.I_SHAPE;
-    if (this.shape.map((r) => r.join("")).join("\n") ===
-    `..I..
-     ..I..
-     ..I..
-     ..I..
-     .....`.replace(/ /g, '')
-    ) {
-      return new RotatingShape(
-        `.....
-         .....
-         IIII.
-         .....
-         .....`)
-    }
+    if (this.toString() === Shapes.I_SHAPE_ROT.split(" ").join("")+ "\n") return new RotatingShape(Shapes.I_SHAPE);
     if (this.shape.map((r) => r.join("")).join("\n") ===
       `.OO
        .OO
@@ -64,7 +50,7 @@ export class RotatingShape {
     let drawn = "";
     for (let i = 0; i < this.height; i++) {
       for (let j = 0; j < this.width; j++) {
-        drawn += this.shape[i][j].toString();
+        drawn += this.shape[i][j];
       }
       drawn += "\n";
     }
