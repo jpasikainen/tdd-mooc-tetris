@@ -119,6 +119,18 @@ export class Board {
     this.tick();
   }
 
+  rotateLeft() {
+    this.draw();
+    this.fallingBlock = this.fallingBlock.rotateLeft();
+    for (let i = 0; i < this.fallingBlock.height; i++) {
+      for (let j = 0; j < this.fallingBlock.width; j++) {
+        if (this.fallingBlock.shape[i][j] !== ".") {
+          this.board[this.fallingBlockPos[0]+i-1][this.fallingBlockPos[1]+j] = this.fallingBlock.shape[i][j];
+        }
+      }
+    }
+  }
+
   toString() {
     let drawn = "";
     for (let i = 0; i < this.height; i++) {
