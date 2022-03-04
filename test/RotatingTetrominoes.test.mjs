@@ -54,13 +54,7 @@ describe("The I shape", () => {
   const shape = Tetromino.I_SHAPE;
 
   it("initial orientation", () => {
-    expect(shape.toString()).to.equalShape(
-      `.....
-       .....
-       IIII.
-       .....
-       .....`
-    );
+    expect(shape.toString()).to.equalShape(Shapes.I_SHAPE[0]);
   });
 
   it("can be rotated right/clockwise", () => {
