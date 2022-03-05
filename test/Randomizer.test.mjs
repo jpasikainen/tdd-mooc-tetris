@@ -9,7 +9,7 @@ describe("Shuffle bag", () => {
   });
   it("takes tetrominoes", () => {
     expect(randomizer.data.length).to.equal(0);
-    randomizer.add(Tetromino.I_SHAPE);
+    randomizer.add(Tetromino.I_SHAPE, 1);
     expect(randomizer.data.length).to.equal(1);
   })
   it("returns a tetromino", () => {
