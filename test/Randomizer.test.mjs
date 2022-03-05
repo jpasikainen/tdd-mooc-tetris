@@ -17,4 +17,9 @@ describe("Shuffle bag", () => {
     const tetromino = randomizer.next();
     expect(tetromino).to.equal(Tetromino.I_SHAPE);
   })
+  it("doesnt empty", () => {
+    randomizer.add(Tetromino.I_SHAPE, 1);
+    randomizer.next();
+    expect(randomizer.next()).to.equal(Tetromino.I_SHAPE);
+  })
 });
