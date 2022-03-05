@@ -22,4 +22,9 @@ describe("Shuffle bag", () => {
     randomizer.next();
     expect(randomizer.next()).to.equal(Tetromino.I_SHAPE);
   })
+  it("returns I shape most likely", () => {
+    randomizer.add(Tetromino.T_SHAPE, 1);
+    randomizer.add(Tetromino.I_SHAPE, 100000);
+    expect(randomizer.next()).to.equal(Tetromino.I_SHAPE);
+  })
 });
