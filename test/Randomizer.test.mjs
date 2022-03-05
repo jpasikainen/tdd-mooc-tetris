@@ -33,4 +33,17 @@ describe("Shuffle bag", () => {
     for (let i = 0; i < 1000; i++) randomizer.next();
     expect(randomizer.next()).to.equal(Tetromino.T_SHAPE);
   })
+  it("returns somewhat decent distribution between Is and Ts", () => {
+    randomizer.add(Tetromino.I_SHAPE, 100);
+    randomizer.add(Tetromino.T_SHAPE, 100);
+    let i_count = 0;
+    let t_count = 0;
+    for (let i = 0; i < 100; i++) {
+      const shape = randomizer.next();
+      if (shape === Tetromino.I_SHAPE) i_count++;
+      else t_count++;
+    }
+    const diff = Math.abs(i_count - t_count);
+    expect(diff).to.lessThan(20);
+  });
 });
