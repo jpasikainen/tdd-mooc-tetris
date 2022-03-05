@@ -13,7 +13,7 @@ describe("Shuffle bag", () => {
     expect(randomizer.data.length).to.equal(1);
   })
   it("returns a tetromino", () => {
-    randomizer.add(Tetromino.I_SHAPE);
+    randomizer.add(Tetromino.I_SHAPE, 1);
     const tetromino = randomizer.next();
     expect(tetromino).to.equal(Tetromino.I_SHAPE);
   })
