@@ -12,6 +12,15 @@ export class Randomizer {
   }
 
   next() {
-
+    if (this.currentPosition < 1) {
+      this.currentPosition = this.data.length - 1;
+      return this.data[0];
+    }
+    const rand = Math.floor(Math.random() * this.data.length)
+    const item = this.data[rand];
+    this.data[rand] = this.data[this.currentPosition];
+    this.data[this.currentPosition] = item;
+    this.currentPosition--;
+    return item;
   }
 }
