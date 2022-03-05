@@ -4,6 +4,7 @@ export class Randomizer {
 
   constructor() {
     this.data = [];
+    this.currentPosition = -1;
   }
 
   add(tetromino, amount) {
