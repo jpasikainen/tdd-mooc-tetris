@@ -9,7 +9,7 @@ export class Randomizer {
 
   add(tetromino, amount) {
     for (let i = 0; i < amount; i++) this.data.push(tetromino);
-    this.currentPosition -= 1;
+    this.currentPosition = this.data.length - 1;
   }
 
   next() {
